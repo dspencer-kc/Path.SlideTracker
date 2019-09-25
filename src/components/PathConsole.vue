@@ -12,7 +12,7 @@ import caseblockslidecounttable from './CaseBlockSlideCountTable'
 
 export default {
   name: 'PathConsole',
-  components: {
+  components: { 
 
   },
   data() {
