@@ -5,16 +5,19 @@
       <a class="navbar-brand" href="#">
           Path Slide Tracker
       </a>
-      <a class="nav-link" href="#">v 0.01 Beta Test Environment</a>
+      <a class="container" text-align: center href="#">v 0.01 Beta Test Environment</a>
+            <a class="navbar-brand" href="#/">
+          {{strSlideDistLoc}}
+      </a>
       <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <b-link class="nav-link" to="/">Home</b-link>
       </li>          
       <li class="nav-item">
-        <b-link class="nav-link" to="/slidedistribution"> Slide Distribution </b-link>
+        <b-link class="nav-link" to="/#/locn/NKC">NKC</b-link>
       </li>      
         <li class="nav-item">
-        <a class="nav-link" href="#">You must badge in prior to printing slides.</a>
+        <a class="nav-link" href="/#/locn/DERM">Derm</a>
       </li>
       </ul>
     </nav>
@@ -25,6 +28,7 @@
     <router-view/>
   </div>
 </template>
+
 
 <style>
 body {
@@ -54,3 +58,26 @@ body {
   color: #42b983;
 }
 </style>
+
+<script>
+import store from './store.js'
+
+export default {
+  name: 'app',
+  components:
+  {
+
+  },
+  data() {
+    return {
+     strSlideDistLoc: null,
+     strURL: null
+    }
+  },
+  mounted() {
+    this.strSlideDistLoc = store.state.strSlideDistLoc
+    //this.strURL = '/#/locn/' & this.$route.params.locnid
+  }
+
+}
+</script>
