@@ -153,6 +153,9 @@ export default new Vuex.Store({
     },
     TableItems: (state, getters) => {
       return state.arTableItems
+    },
+    SlideDistLoc: (state, getters) => {
+      return state.strSlideDistLoc
     }
   }
 })

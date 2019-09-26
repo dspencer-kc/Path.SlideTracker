@@ -1,7 +1,7 @@
 <template>
   <div class='container'>
-  <h1>This is locn: {{this.$route.params.locnid}}</h1>
   <caseblockslidecounttable> </caseblockslidecounttable>
+  <b-button variant="secondary sm" @click="clearCurrentSlide()">Show Details</b-button>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import caseblockslidecounttable from './CaseBlockSlideCountTable'
 export default {
   name: 'PathConsole',
   components: { 
-
+    caseblockslidecounttable
   },
   data() {
     return {
