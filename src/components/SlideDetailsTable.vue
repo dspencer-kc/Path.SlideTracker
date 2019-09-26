@@ -28,30 +28,28 @@ export default {
     },
     data() {
     return {
-        fields: store.state.TableFields,
-        items: store.state.TableItems
     }
-  },
-  methods: {
-      created () {
-          // console.log('Hello mounted')
-          // this.LoadTableData()
+  },      
+  created () {
+          console.log('Hello Slide Details Mounted')
+          this.LoadTableData()
       },
+  methods: {
       LoadTableData() {
-        store.dispatch('LoadBlockCountTableData').then(() => {
+        store.dispatch('LoadSlideDetailsTableData').then(() => {
         console.log('Show after promise blah')
         // this.datacollection = store.state.objChartDataCollection
-        console.log(store.state.blockCountTableItems)
+        console.log(store.state.arSlideDetailsTableItems)
         }) 
       }
 
   },
     computed: {
         arTableItems () {
-            return this.$store.getters.TableItems
+            return this.$store.getters.SlideDetailsTableItems
         },
         arTableFields () {
-            return this.$store.getters.TableFields
+            return this.$store.getters.SlideDetailsTableFields
         } 
     }
 }

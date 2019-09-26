@@ -2,6 +2,9 @@
   <div class='container'>
   <caseblockslidecounttable> </caseblockslidecounttable>
   <b-button variant="secondary sm" @click="clearCurrentSlide()">Show Details</b-button>
+  <br>
+  <br>
+  <slidedetailstable> </slidedetailstable>
   </div>
 </template>
 
@@ -9,11 +12,13 @@
 import store from '../store.js'
 import axios from 'axios'
 import caseblockslidecounttable from './CaseBlockSlideCountTable'
+import slidedetailstable from './SlideDetailsTable'
 
 export default {
   name: 'PathConsole',
   components: { 
-    caseblockslidecounttable
+    caseblockslidecounttable,
+    slidedetailstable
   },
   data() {
     return {
@@ -38,12 +43,7 @@ export default {
       this.blTblDataLoaded = false
       store.dispatch('LoadCaseBlockSlideCountTableData', this.$route.params.locnid).then(() => {
         console.log('Promise completed')
-        this.objAllRunData = store.state.objPieChartTotalData
-        this.objFirstRunData = store.state.objPieChartFirstRunData
-        this.objSecondRunData = store.state.objPieChartSecondRunData
-        this.objThirdRunData = store.state.objPieChartThirdRunData
-        this.objFourthRunData = store.state.objPieChartFourthRunData
-        this.loaded=true    
+        this.blTblDataLoaded=true    
       })  
     }
   }

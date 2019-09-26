@@ -28,8 +28,6 @@ export default {
     },
     data() {
     return {
-        fields: store.state.TableFields,
-        items: store.state.TableItems
     }
   },
   methods: {
