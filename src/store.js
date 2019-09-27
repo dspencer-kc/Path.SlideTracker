@@ -99,7 +99,8 @@ export default new Vuex.Store({
             temp = response.data
 
             for (var i = 0; i < response.data.length; i++) {
-              // commit('PushArSlideDetailsTableItems', { isActive: false, Marked_Ready_for_Courier: '1', Slide_ID: temp[i][0].FirstRunCaseCount, Stain: temp[2][0].FirstRunBlockCount, Slide_Tray: temp[3][0].FirstRunSlideCount })
+              // commit('PushArSlideDetailsTableItems', { isActive: false, Marked_Ready_for_Courier: temp[i][0].FirstRunCaseCount, Slide_ID: temp[i][0].FirstRunCaseCount, Stain: temp[2][0].FirstRunBlockCount, Slide_Tray: temp[3][0].FirstRunSlideCount })
+              commit('PushArSlideDetailsTableItems', { isActive: false, Marked_Ready_for_Courier: temp[i].DTReadyForCourier, Slide_ID: temp[i].SlideID, Stain: temp[i].StainLabel, Slide_Tray: temp[i].SlideTray })
               console.log(i)
             } // end for
             console.log('done test')

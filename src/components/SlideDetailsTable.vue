@@ -32,7 +32,7 @@ export default {
   },      
   created () {
           console.log('Hello Slide Details Mounted')
-          this.LoadTableData()
+          // this.LoadTableData()
       },
   methods: {
       LoadTableData() {

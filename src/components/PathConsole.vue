@@ -1,10 +1,10 @@
 <template>
   <div class='container'>
-  <caseblockslidecounttable> </caseblockslidecounttable>
-  <b-button variant="secondary sm" @click="clearCurrentSlide()">Show Details</b-button>
+  <caseblockslidecounttable v-if='blTblDataLoaded'> </caseblockslidecounttable>
+  <b-button variant="secondary sm" @click="LoadSlideDetailsTableData()">Show Slide Details</b-button>
   <br>
   <br>
-  <slidedetailstable> </slidedetailstable>
+  <slidedetailstable v-if='blTblSlideDetailsDataLoaded'> </slidedetailstable>
   </div>
 </template>
 
@@ -23,7 +23,8 @@ export default {
   data() {
     return {
       blTblDataLoaded: false,
-      strLocnIDURLHash: null
+      strLocnIDURLHash: null,
+      blTblSlideDetailsDataLoaded: false
     }
   },
   watch: {
@@ -45,7 +46,16 @@ export default {
         console.log('Promise completed')
         this.blTblDataLoaded=true    
       })  
-    }
+    },
+    LoadSlideDetailsTableData() {
+        this.blTblSlideDetailsDataLoaded = false
+        store.dispatch('LoadSlideDetailsTableData').then(() => {
+        console.log('Show after promise blah')
+        // this.datacollection = store.state.objChartDataCollection
+        console.log(store.state.arSlideDetailsTableItems)
+        this.blTblSlideDetailsDataLoaded = true
+        }) 
+      }
   }
 }
 </script>
