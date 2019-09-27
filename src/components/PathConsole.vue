@@ -58,10 +58,13 @@ export default {
         console.log(store.state.arSlideDetailsTableItems)
         this.blTblSlideDetailsDataLoaded = true
         this.blDetailsShow = true
+        this.blDetailsVisible = true
         }) 
       },
       ClickShowHideDetails() {
-       if (this.blDetailsShow) {
+       if (this.blDetailsVisible) {
+
+
         this.blDetailsVisible = false
         this.strShowDetailText = 'Show Details'
        } else {
@@ -69,7 +72,7 @@ export default {
          this.blDetailsVisible = true
          } else {
           this.LoadSlideDetailsTableData()
-          this.blDetailsVisible = true
+          // this.blDetailsVisible = true
          }
 
         this.strShowDetailText = 'Hide Details'

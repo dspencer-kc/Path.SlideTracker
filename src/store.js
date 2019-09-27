@@ -13,9 +13,9 @@ export default new Vuex.Store({
     //  Prod
     //  apiURL: 'http://10.24.4.9:2081',
     //  Test
-    //  apiURL: 'http://10.24.4.9:2082',
+    apiURL: 'http://10.24.4.9:2082',
     //  Local Test
-    apiURL: 'http://localhost:2081',
+    //  apiURL: 'http://localhost:2081',
     strSlideDistLoc: null
 
   },
@@ -89,7 +89,6 @@ export default new Vuex.Store({
           SLIDEDISTLOCID: this.state.strSlideDistLoc
         })
           .then(function (response) {
-            console.log('Hi')
             // Clear table data
             commit('ClearArSlideDetailsTableItems')
             console.log('Response:')
@@ -118,16 +117,14 @@ export default new Vuex.Store({
 
               // commit('PushArSlideDetailsTableItems', { isActive: false, Marked_Ready_for_Courier: temp[i][0].FirstRunCaseCount, Slide_ID: temp[i][0].FirstRunCaseCount, Stain: temp[2][0].FirstRunBlockCount, Slide_Tray: temp[3][0].FirstRunSlideCount })
               commit('PushArSlideDetailsTableItems', { isActive: false, Marked_Ready_for_Courier: strFormattedDate, Slide_ID: strSlideID, Stain: temp[i].StainLabel, Slide_Tray: strSlideTray })
-              console.log(i)
+              // console.log(i)
             } // end for
-            console.log('done test')
             resolve()
           })
           .catch(function (error) {
             console.log(error)
             reject(error)
           })
-        console.log('promise done')
       })
     }
   },

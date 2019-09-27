@@ -1,37 +1,28 @@
 <template>
   <div id="app">
 
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark static-top">
       <a class="navbar-brand" href="#">
           Path Slide Tracker
       </a>
-      <a class="container" text-align: center href="#">v 0.01 Beta Test Environment</a>
+      <a class="container" text-align: center href="#">v 1.00 TEST</a>
             <a v-if='blStrSlideDistLoc' class="navbar-brand" href="#/">
            {{strSlideDistLoc}} 
             </a>
       <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-      <a class="nav-link" href="/#/locn/DERM">Derm</a>
-      </li>
-      <li class="nav-item">
-        <b-link class="nav-link" href="/#/locn/LIB">Lib</b-link>
-      </li>              
-      <li class="nav-item">
-        <b-link class="nav-link" href="/#/locn/NKCH">NKCH</b-link>
-      </li>
-      <li class="nav-item">
-        <b-link class="nav-link" href="/#/locn/SMMC">SMMC</b-link>
-      </li>       
+    
 
       <li class="nav-item">
       <router-link class="nav-link" to="/about">About</router-link>
       </li>
       </ul>
     </nav>
+    <br>
+    <!-- 
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+    </div> -->
     <router-view/>
   </div>
 </template>
@@ -64,12 +55,30 @@ body {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+.customheadertext {
+ text-rendering: optimizeLegibility;
+      color: #e0dfdc;
+      letter-spacing: .1em;
+      }
 .customsubheadertext {
  text-rendering: optimizeLegibility;
       color: #e0dfdc;
       letter-spacing: .1em;
       color: white;
       text-shadow: -1px -1px 0 #2c2d2d, 1px -1px 0 #2c2d2d, -1px 1px 0 #2c2d2d, 1px 1px 0 #2c2d2d;
+      }
+.abouttext {
+ text-rendering: optimizeLegibility;
+      color: #e0dfdc;
+      letter-spacing: .1em;
+      }
+.abouttextparagraph {
+ text-rendering: optimizeLegibility;
+      color: #e0dfdc;
+      letter-spacing: .1em;
+      background-color: rgba(103, 111, 128, 0.986);
+      opacity:0.95;
+      text-align: center;
       }
 </style>
 
