@@ -99,8 +99,25 @@ export default new Vuex.Store({
             temp = response.data
 
             for (var i = 0; i < response.data.length; i++) {
+              let strSlideID = temp[i].SlideID
+              let strSlideTray = temp[i].SlideTray
+              let dtRdyForCourier = new Date(temp[i].DTReadyForCourier)
+              let intMinutes = dtRdyForCourier.getMinutes()
+              let strMinutes = ''
+              if (intMinutes <= 9) {
+                strMinutes = '0' + intMinutes
+              } else {
+                strMinutes = intMinutes
+              }
+              // let strFormattedDate = dtRdyForCourier.format('hh:mm mm/dd/yy')
+              let strFormattedDate = (dtRdyForCourier.getMonth() + 1) + '-' + dtRdyForCourier.getDate() + '-' + dtRdyForCourier.getFullYear() + ' ' + dtRdyForCourier.getHours() + ':' + strMinutes
+              console.log(strFormattedDate)
+              // let strDTReadyForCourier = temp[i].DTReadyForCourier
+              strSlideID = strSlideID.replace('HSLD', '')
+              strSlideTray = strSlideTray.replace('SLTR', '')
+
               // commit('PushArSlideDetailsTableItems', { isActive: false, Marked_Ready_for_Courier: temp[i][0].FirstRunCaseCount, Slide_ID: temp[i][0].FirstRunCaseCount, Stain: temp[2][0].FirstRunBlockCount, Slide_Tray: temp[3][0].FirstRunSlideCount })
-              commit('PushArSlideDetailsTableItems', { isActive: false, Marked_Ready_for_Courier: temp[i].DTReadyForCourier, Slide_ID: temp[i].SlideID, Stain: temp[i].StainLabel, Slide_Tray: temp[i].SlideTray })
+              commit('PushArSlideDetailsTableItems', { isActive: false, Marked_Ready_for_Courier: strFormattedDate, Slide_ID: strSlideID, Stain: temp[i].StainLabel, Slide_Tray: strSlideTray })
               console.log(i)
             } // end for
             console.log('done test')
@@ -129,6 +146,14 @@ export default new Vuex.Store({
     },
     SlideDistLoc: (state, getters) => {
       return state.strSlideDistLoc
+    }
+  },
+  functions: {
+    appendLeadingZeroes (n) {
+      if (n <= 9) {
+        return '0' + n
+      }
+      return n
     }
   }
 })

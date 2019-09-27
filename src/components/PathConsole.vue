@@ -1,10 +1,10 @@
 <template>
   <div class='container'>
   <caseblockslidecounttable v-if='blTblDataLoaded'> </caseblockslidecounttable>
-  <b-button variant="secondary sm" @click="LoadSlideDetailsTableData()">Show Slide Details</b-button>
+  <b-button v-if='ShowDetailButtonVisible' variant="secondary sm" @click="ClickShowHideDetails()">{{strShowDetailText}}</b-button>
   <br>
   <br>
-  <slidedetailstable v-if='blTblSlideDetailsDataLoaded'> </slidedetailstable>
+  <slidedetailstable v-if='ShowDetails'> </slidedetailstable>
   </div>
 </template>
 
@@ -24,7 +24,10 @@ export default {
     return {
       blTblDataLoaded: false,
       strLocnIDURLHash: null,
-      blTblSlideDetailsDataLoaded: false
+      blTblSlideDetailsDataLoaded: false,
+      strShowDetailText: 'Show Details',
+      blDetailsShow: false,
+      blDetailsVisible: false
     }
   },
   watch: {
@@ -54,8 +57,42 @@ export default {
         // this.datacollection = store.state.objChartDataCollection
         console.log(store.state.arSlideDetailsTableItems)
         this.blTblSlideDetailsDataLoaded = true
+        this.blDetailsShow = true
         }) 
+      },
+      ClickShowHideDetails() {
+       if (this.blDetailsShow) {
+        this.blDetailsVisible = false
+        this.strShowDetailText = 'Show Details'
+       } else {
+         if (this.blTblSlideDetailsDataLoaded) {
+         this.blDetailsVisible = true
+         } else {
+          this.LoadSlideDetailsTableData()
+          this.blDetailsVisible = true
+         }
+
+        this.strShowDetailText = 'Hide Details'
+       }
       }
+  },
+  computed: {
+    ShowDetailButtonVisible (){
+      //if (this.validuser=='f' || !blockID ) {
+      if (this.blTblDataLoaded) {
+        return true
+      } else {
+        return false
+      }
+    },
+    ShowDetails () {
+      if ( this.blTblDataLoaded && this.blDetailsVisible ){
+        return true
+      } else {
+        return false
+      }
+    }
+
   }
 }
 </script>
