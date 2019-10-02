@@ -37,6 +37,7 @@
       <ul>
         <li>All counts start from 0 and will be</li>
         <li>Non Gyn Cytology Slides are Not Included</li>
+        <li>Only reoutine slides are included, immuno and special stains are not included</li>
         <li>You have to refresh the page to get the latest numbers (press f5 if you are on a PC) - See Future Updates</li>
         <li>If histotechs reprint a slide to get additonal levels instead of adding the slide in CoPath, these are not included in the count (being worked on)</li>
       </ul>

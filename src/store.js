@@ -10,12 +10,15 @@ export default new Vuex.Store({
     arTableItems: [],
     arSlideDetailsTableFields: ['Marked_Ready_for_Courier', 'Slide_ID', 'Stain', 'Slide_Tray'],
     arSlideDetailsTableItems: [],
+    apitoken: 'token',
     //  Prod
     //  apiURL: 'http://10.24.4.9:2081',
     //  Test
-    apiURL: 'http://10.24.4.9:2082',
+    //  apiURL: 'http://10.24.4.9:2082',
     //  Local Test
     //  apiURL: 'http://localhost:2081',
+    //  Prod URL
+    apiURL: 'http://23.228.166.87:2083',
     strSlideDistLoc: null
 
   },
@@ -48,7 +51,8 @@ export default new Vuex.Store({
         console.log('APIHash')
         console.log(strLocationHash)
         axios.post(strFullAPICall, {
-          URLHASH: strLocationHash
+          URLHASH: strLocationHash,
+          apitoken: this.state.apitoken
         })
           .then(function (response) {
             // Clear table data
@@ -86,7 +90,8 @@ export default new Vuex.Store({
         console.log(strFullAPICall)
         console.log(this.state.strSlideDistLoc)
         axios.post(strFullAPICall, {
-          SLIDEDISTLOCID: this.state.strSlideDistLoc
+          SLIDEDISTLOCID: this.state.strSlideDistLoc,
+          apitoken: this.state.apitoken
         })
           .then(function (response) {
             // Clear table data
