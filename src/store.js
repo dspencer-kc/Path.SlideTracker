@@ -18,7 +18,7 @@ export default new Vuex.Store({
     //  Local Test
     //  apiURL: 'http://localhost:2081',
     //  Prod URL
-    apiURL: 'http://23.228.166.87:2083',
+    apiURL: 'url:port',
     strSlideDistLoc: null
 
   },
