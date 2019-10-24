@@ -10,7 +10,6 @@ export default new Vuex.Store({
     arTableItems: [],
     arSlideDetailsTableFields: ['Marked_Ready_for_Courier', 'Slide_ID', 'Stain', 'Slide_Tray'],
     arSlideDetailsTableItems: [],
-    apitoken: 'token',
     //  Prod
     //  apiURL: 'http://10.24.4.9:2081',
     //  Test
@@ -18,7 +17,8 @@ export default new Vuex.Store({
     //  Local Test
     //  apiURL: 'http://localhost:2081',
     //  Prod URL
-    apiURL: 'url:port',
+    apiURL: 'xxxx',
+    apitoken: 'xxxx',
     strSlideDistLoc: null
 
   },
@@ -46,10 +46,10 @@ export default new Vuex.Store({
     LoadCaseBlockSlideCountTableData ({ commit }, strLocationHash) {
       return new Promise((resolve, reject) => {
         let strFullAPICall = this.state.apiURL + '/caseblockslidecount'
-        console.log('Hello LoadBlockCountTableData')
-        console.log(strFullAPICall)
-        console.log('APIHash')
-        console.log(strLocationHash)
+        // console.log('Hello LoadBlockCountTableData')
+        // console.log(strFullAPICall)
+        // console.log('APIHash')
+        // console.log(strLocationHash)
         axios.post(strFullAPICall, {
           URLHASH: strLocationHash,
           apitoken: this.state.apitoken
@@ -83,7 +83,7 @@ export default new Vuex.Store({
       })
     },
     LoadSlideDetailsTableData ({ commit }, strLocationHash) {
-      console.log('Hello load slide details table Data')
+      // console.log('Hello load slide details table Data')
       return new Promise((resolve, reject) => {
         let strFullAPICall = this.state.apiURL + '/caseblockslidecountdetails'
         console.log('Hello LoadBlockCountTableData')
@@ -96,8 +96,8 @@ export default new Vuex.Store({
           .then(function (response) {
             // Clear table data
             commit('ClearArSlideDetailsTableItems')
-            console.log('Response:')
-            console.log(response)
+            // console.log('Response:')
+            // console.log(response)
             // strResponseJSON = response.data[0].FirstRunCaseCount
             let temp = {}
             temp = response.data
