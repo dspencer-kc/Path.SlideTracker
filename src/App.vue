@@ -3,7 +3,7 @@
 
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark static-top">
       <a class="navbar-brand" href="#">
-          Path Slide Tracker
+          Slide-Tracker Dashboard
       </a>
       <a class="container" text-align: center href="#">v 1.00</a>
             <a v-if='blStrSlideDistLoc' class="navbar-brand" href="#/">

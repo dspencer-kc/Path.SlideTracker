@@ -31,15 +31,15 @@ export default {
     }
   },      
   created () {
-          console.log('Hello Slide Details Mounted')
+          // console.log('Hello Slide Details Mounted')
           // this.LoadTableData()
       },
   methods: {
       LoadTableData() {
         store.dispatch('LoadSlideDetailsTableData').then(() => {
-        console.log('Show after promise blah')
+        // console.log('Show after promise blah')
         // this.datacollection = store.state.objChartDataCollection
-        console.log(store.state.arSlideDetailsTableItems)
+        // console.log(store.state.arSlideDetailsTableItems)
         }) 
       }
 

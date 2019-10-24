@@ -1,11 +1,11 @@
 <template>
   <div class="abouttext">
-      <h2>About Path Slide Tracker</h2>
+      <h2>About Slide-Tracker Dashboard</h2>
       <br>
       <h4>Version 1.00 Notes</h4>
       <br>
       <div class="abouttextparagraph">
-      <p>Path Slide Tracker is designed to be a tool to let pathologists know as soon as possible that slides are heading their way. 
+      <p>The Slide Tracker Dashboard is designed to be a tool to let pathologists know as soon as possible that slides are heading their way. 
          The idea is that as soon as Slide Distribution / Case Assembly determines where slides are going, to instantly update a
          dashboard that the pathologists can see. Essentially, to mark a slide ready for the couriers, Slide Distribution will
           scan a slide tray, then scan slides that are put in that tray, and then assign them a location (either to a specific

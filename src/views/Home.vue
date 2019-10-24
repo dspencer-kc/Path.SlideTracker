@@ -1,10 +1,10 @@
 <template>
   <div class="abouttext">
-    <h1>Welcome to Path Slide Tracker</h1>
+    <h1>Welcome to the Slide Tracker Dashboard</h1>
     <br>
     <div class="abouttextparagraph">
-    <P>You will need to access your individual slide tracker at the address given to you by MAWD IT.
-      Basically, you will need to go to a specific site, for example: www.slide-tracker.com/#/locn/04780183.  If your sides
+    <P>You will need to access your individual dashboard at the address given to you by MAWD IT.
+      Basically, you will need to go to a specific site, for example: www.slide-tracker.com/#/locn/04780183.  If your slides
       are assigned to a hospital as opposed to a specific pathologist, the address will be that hospital
       abbreviation instead of the unique id.  For example www.slide-tracker.com/#/locn/NKCH
     </P>
