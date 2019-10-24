@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+var EnvVar = require('./.env.local')
 
 Vue.use(Vuex)
 
@@ -10,15 +11,8 @@ export default new Vuex.Store({
     arTableItems: [],
     arSlideDetailsTableFields: ['Marked_Ready_for_Courier', 'Slide_ID', 'Stain', 'Slide_Tray'],
     arSlideDetailsTableItems: [],
-    //  Prod
-    //  apiURL: 'http://10.24.4.9:2081',
-    //  Test
-    //  apiURL: 'http://10.24.4.9:2082',
-    //  Local Test
-    //  apiURL: 'http://localhost:2081',
-    //  Prod URL
-    apiURL: 'xxxx',
-    apitoken: 'xxxx',
+    apiURL: EnvVar.apiURL,
+    apitoken: EnvVar.apitoken,
     strSlideDistLoc: null
 
   },
