@@ -1,6 +1,8 @@
 # Path.SlideTracker
 
 ## Project setup
+
+## Set api token and api url under .env.local (see .env.local.sample as example)
 ```
 npm install
 ```

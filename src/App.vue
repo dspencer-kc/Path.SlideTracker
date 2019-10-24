@@ -5,7 +5,7 @@
       <a class="navbar-brand" href="#">
           Slide-Tracker Dashboard
       </a>
-      <a class="container" text-align: center href="#">v 1.00</a>
+      <a class="container" text-align: center href="#">v 1.01</a>
             <a v-if='blStrSlideDistLoc' class="navbar-brand" href="#/">
            {{strSlideDistLoc}} 
             </a>
