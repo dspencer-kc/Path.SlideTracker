@@ -134,7 +134,7 @@ export default new Vuex.Store({
     LoadAllLocBlockCountTableData ({ commit }, strLocationHash) {
       return new Promise((resolve, reject) => {
         let strFullAPICall = this.state.apiURL + '/caseblockslidecount'
-        let arTemp = ['Location', '_1st_Run_Block_Count', '_2nd_Run_Block_Count', '_3rd_Run_Block_Count', '_4th_Run_Block_Count', 'Total_Block_Count']
+        let arTemp = ['Location', '_1st_Run_Blocks', '_2nd_Run_Blocks', '_3rd_Run_Blocks', '_4th_Run_Blocks', 'Total_Blocks']
         commit('SetarTableFields', arTemp)
         // console.log('Hello LoadBlockCountTableData')
         // console.log(strFullAPICall)
@@ -157,7 +157,7 @@ export default new Vuex.Store({
             // console.log(temp)
             for (var i = 1; i < response.data.length; i++) {
               // Build Chart Data Array
-              commit('PushArTableItems', { isActive: false, Location: temp[i].LocAbbr, _1st_Run_Block_Count: temp[i].FirstRunBlockCount, _2nd_Run_Block_Count: temp[i].SecondRunBlockCount, _3rd_Run_Block_Count: temp[i].ThirdRunBlockCount, _4th_Run_Block_Count: temp[i].FourthRunBlockCount, Total_Block_Count: temp[i].TotalBlockCount }) } // end for
+              commit('PushArTableItems', { isActive: false, Location: temp[i].LocAbbr, _1st_Run_Blocks: temp[i].FirstRunBlockCount, _2nd_Run_Blocks: temp[i].SecondRunBlockCount, _3rd_Run_Blocks: temp[i].ThirdRunBlockCount, _4th_Run_Blocks: temp[i].FourthRunBlockCount, Total_Blocks: temp[i].TotalBlockCount }) } // end for
             resolve()
           })
           .catch(function (error) {

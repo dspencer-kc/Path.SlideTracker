@@ -1,6 +1,5 @@
 <template>
   <div class='container'>
-    <h1>Hello</h1>
   <caseblockslidecounttable v-if='blTblDataLoaded'> </caseblockslidecounttable>
   <b-button v-if='ShowDetailButtonVisible' variant="secondary sm" @click="ClickShowHideDetails()">{{strShowDetailText}}</b-button>
   <br>
