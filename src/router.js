@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Location from './components/PathConsole.vue'
+import MasterPathConsole from './components/MasterPathConsole.vue'
 
 Vue.use(Router)
 
@@ -19,6 +20,12 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
+      path: '/063d01cd',
+      component: MasterPathConsole,
+      name: 'MasterPathConsole',
+      props: true 
     },
     {
       path: '/locn/:locnid',

@@ -14,6 +14,8 @@ export default new Vuex.Store({
     apiURL: EnvVar.apiURL,
     apitoken: EnvVar.apitoken,
     strSlideDistLoc: null
+    // arTableFieldsAllLoc: ['Location', 'Run', 'Cases', 'Blocks', 'Slides'],
+    // arTableItemsAllLoc: []
 
   },
   mutations: {
@@ -34,6 +36,9 @@ export default new Vuex.Store({
     },
     SetStrSlideDistLoc (state, objTmp) {
       state.strSlideDistLoc = objTmp
+    },
+    SetarTableFields (state, objTmp) {
+      state.arTableFields = objTmp
     }
   },
   actions: {
@@ -125,6 +130,46 @@ export default new Vuex.Store({
             reject(error)
           })
       })
+    },
+    LoadAllLocBlockCountTableData ({ commit }, strLocationHash) {
+      return new Promise((resolve, reject) => {
+        let strFullAPICall = this.state.apiURL + '/caseblockslidecount'
+        let arTemp = ['Location', '_1st_Run_Block_Count', '_2nd_Run_Block_Count', '_3rd_Run_Block_Count', '_4th_Run_Block_Count', 'Total_Block_Count']
+        commit('SetarTableFields', arTemp)
+        // console.log('Hello LoadBlockCountTableData')
+        // console.log(strFullAPICall)
+        // console.log('APIHash')
+        // console.log(strLocationHash)
+        //
+        // Hard Coded master location hash
+        axios.post(strFullAPICall, {
+          URLHASH: '063d01cd',
+          apitoken: this.state.apitoken
+        })
+          .then(function (response) {
+            // Clear table data
+            commit('ClearArTableItems')
+
+            let temp = {}
+            temp = response.data
+
+            // console.log('Load All Loc BLock Count Response')
+            // console.log(temp)
+            for (var i = 1; i < response.data.length; i++) {
+              // Build Chart Data Array
+              commit('PushArTableItems', { isActive: false, Location: temp[i].LocAbbr, _1st_Run_Block_Count: temp[i].FirstRunBlockCount, _2nd_Run_Block_Count: temp[i].SecondRunBlockCount, _3rd_Run_Block_Count: temp[i].ThirdRunBlockCount, _4th_Run_Block_Count: temp[i].FourthRunBlockCount, Total_Block_Count: temp[i].TotalBlockCount }) } // end for
+            resolve()
+          })
+          .catch(function (error) {
+            console.log(error)
+            reject(error)
+          })
+        console.log('promise done')
+      })
+    },
+    AssignSlideDistrLoc ({ commit }, strLocation) {
+      console.log('Hello AssignSlideDistrLoc')
+      commit('SetStrSlideDistLoc', strLocation)
     }
   },
   getters: {
