@@ -41,17 +41,24 @@ export default {
   mounted() {
       console.log('Hello mounted')
       this.GetTableData()
+      this.interval = setInterval(function () {
+        if (this.blTblDataLoaded) {
+          console.log('Refresh Data')
+          this.GetTableData();
+        }
+      }.bind(this), 30000);
+
   },
   methods: {
     GetTableData () {
-      this.blTblDataLoaded = false
+      // this.blTblDataLoaded = false
       store.dispatch('LoadCaseBlockSlideCountTableData', this.$route.params.locnid).then(() => {
         console.log('Promise completed')
         this.blTblDataLoaded=true    
-      })  
+      })
     },
     LoadSlideDetailsTableData() {
-        this.blTblSlideDetailsDataLoaded = false
+        // this.blTblSlideDetailsDataLoaded = false
         store.dispatch('LoadSlideDetailsTableData').then(() => {
         console.log('Show after promise blah')
         // this.datacollection = store.state.objChartDataCollection
