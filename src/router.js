@@ -32,6 +32,12 @@ export default new Router({
       component: Location,
       name: 'PathConsole',
       props: true 
+    },
+    {
+      path: '/CaseInquiry',
+      component: () => import(/* webpackChunkName: "about" */ './views/CaseInquiry.vue'),
+      name: 'CaseInquiry',
+      props: true 
     }
       
   ]

@@ -2,16 +2,17 @@
   <div id="app">
 
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark static-top">
-      <a class="navbar-brand" href="#">
-          Slide-Tracker Dashboard
-      </a>
+          <router-link class="navbar-brand" to="/">
+            Slide-Tracker Dashboard
+          </router-link>
       <a class="container" text-align: center href="#">v 1.01</a>
             <a v-if='blStrSlideDistLoc' class="navbar-brand" href="#/">
            {{strSlideDistLoc}} 
             </a>
       <ul class="navbar-nav ml-auto">
-    
-
+      <li class="nav-item">
+        <router-link class="nav-link text-nowrap" to="/caseinquiry">Case Inquiry</router-link>
+      </li>
       <li class="nav-item">
       <router-link class="nav-link" to="/about">About</router-link>
       </li>
