@@ -1,7 +1,5 @@
 <template>
   <div class="abouttext">
-      <h2>Case Inquiry</h2>
-      <br>
       <LookupSlideDetails> </LookupSlideDetails>
       
       <br>

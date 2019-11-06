@@ -1,15 +1,15 @@
 <template>
-  <div class="container">
-    <div class="mx-auto">
-      <div class="container">
-        <div class= "row">
-            <b-input id="InputCaseNo" class="w-25 p-1" v-model="strCaseNo" placeholder="Input Case No" />
-            <b-button type="submit" variant="secondary sm" @click="ShowTable()">OK</b-button>
+  <div>
+    <div class="d-flex justify-content-center">      
+        <div class="p-2 col-sm-3"><!--width is set by this div -->
+          <div class="input-group">
+              <b-input id="InputCaseNo" style="width: 150px;" v-model="strCaseNo" placeholder="Input Case No: ie D19-99999" />
+              <b-button type="submit" variant="secondary sm" @click="ShowTable()">OK</b-button>
         </div>
-      <br>
-      <CaseInquiryDetailsTable :strCaseNo="strCaseNo" v-if='blShowTable'> </CaseInquiryDetailsTable>
       </div>
     </div>
+      <br>
+      <CaseInquiryDetailsTable :strCaseNo="strCaseNo" v-if='blShowTable'> </CaseInquiryDetailsTable>
   </div>
 </template>
 
