@@ -3,8 +3,8 @@
     <div class="d-flex justify-content-center">      
         <div class="p-2 col-sm-3"><!--width is set by this div -->
           <div class="input-group">
-              <b-input id="InputCaseNo" style="width: 150px;" v-model="strCaseNo" placeholder="Input Case No: ie D19-99999" />
-              <b-button type="submit" variant="secondary sm" @click="LoadTableData()">OK</b-button>
+              <b-input id="InputCaseNo" style="width: 150px;" v-model="strCaseNo" placeholder="Input Case No: ie D19-99999" @keyup.enter="EnterKeyTrigger" />
+              <b-button type="submit" variant="primary sm" @click="LoadTableData()" ref="btnLoadTableData">OK</b-button>
         </div>
       </div>
     </div>
@@ -124,6 +124,9 @@ export default {
         // let strFormattedDate = dtRdyForCourier.format('hh:mm mm/dd/yy')
         strFormattedDateTime = (dtTemp.getMonth() + 1) + '-' + dtTemp.getDate() + '-' + dtTemp.getFullYear() + ' ' + dtTemp.getHours() + ':' + strMinutes
         return strFormattedDateTime
+      },
+      EnterKeyTrigger() {
+        this.$refs.btnLoadTableData.click()
       }
   }
 }
