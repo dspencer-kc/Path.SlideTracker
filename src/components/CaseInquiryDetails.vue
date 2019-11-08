@@ -1,7 +1,18 @@
 <template>
-<div class="container">
-  <b-table ref="tblSlideDetails" striped hover dark small borderless :items="arTblItems" :fields="arTblFields"></b-table>
-</div>  <!-- /container -->
+  <div>
+    <div class="d-flex justify-content-center">      
+        <div class="p-2 col-sm-3"><!--width is set by this div -->
+          <div class="input-group">
+              <b-input id="InputCaseNo" style="width: 150px;" v-model="strCaseNo" placeholder="Input Case No: ie D19-99999" />
+              <b-button type="submit" variant="secondary sm" @click="LoadTableData()">OK</b-button>
+        </div>
+      </div>
+    </div>
+      <br>
+      <div class="container">
+        <b-table ref="tblSlideDetails" striped hover dark small borderless v-if='blShowTable' :items="arTblItems" :fields="arTblFields"></b-table>
+      </div>
+  </div>
 </template>
 
 <script>
@@ -9,24 +20,30 @@ import axios from 'axios'
 import store from '../store.js'
 
 export default {
-  name: 'caseinquirydetails', // component name
-    data() {
+  name: 'CaseInquiryDetails',
+  components: {
+  },
+  data() {
     return {
-      arTblFields: ['SlideID', 'Stain', 'Status', 'Distribution_Location', 'Marked_For_Courier_Time', 'Microtomy_Station', 'Microtomy_Time', 'Stain_Order_Time', 'Slide_Tray'],
-      arTblItems: null
+      strCaseNo: '',
+      blShowTable: false,
+      arTblFields: ['SlideID', 'Stain', 'Status', 'Distribution_Location', 'Marked_For_Courier_Time', 'Microtomy_Station', 'Microtomy_Time', 'Stain_Order_Time', 'Gross_Time', 'Slide_Tray'],
+      arTblItems: null,
+      strCaseNo: '',
+      blLoading: false
     }
   },
-  props: {
-    strCaseNo: String
-  },     
-  created () {
-          console.log('Start Load Case Inquiry Table')
-          this.LoadTableData()
-      },
   methods: {
-      LoadTableData() {
+    ShowTable()
+    {
+       this.blShowTable = true
+    },
+    LoadTableData() {
+          
+          this.blShowTable = false
+          this.blLoading = true
           let strFullAPICall = store.state.apiURL + '/caseinquiry'
-          console.log(strFullAPICall)
+          // console.log(strFullAPICall)
           this.arTblItems = []   
 
           axios.post(strFullAPICall, {
@@ -44,13 +61,14 @@ export default {
             temp = apidata.data
             // console.log(temp)
 
-            for (var i = 1; i < apidata.data.length; i++) {
+            for (var i = 0; i < apidata.data.length; i++) {
               let strSlideTray = ''
               let strSlideDistLoc = ''
               let dtRdyForCourier = ''
               let strFormattedDTReadyForCourier = ''
               let strFormattedDTSlidePrinted = ''
               let strFormattedDTStainOrdered = ''
+              let strFormattedDTGross= ''
               if(temp[i].SlideDistributionLocation) {
                 strSlideDistLoc = temp[i].SlideDistributionLocation
               }
@@ -67,7 +85,10 @@ export default {
               }
               if(temp[i].StainOrderDate) {
                 strFormattedDTStainOrdered = this.FormatDateTime(new Date (temp[i].StainOrderDate))
-              }             
+              }
+              if(temp[i].DateTimeEngraved) {
+                strFormattedDTGross = this.FormatDateTime(new Date (temp[i].DateTimeEngraved))
+              }               
 
               // console.log(strFormattedDate)
               strSlideID = strSlideID.replace('HSLD', '')
@@ -75,9 +96,11 @@ export default {
               strSlideDistLoc = strSlideDistLoc.replace('LOCN', '')
 
               // Build Chart Data Array
-              this.arTblItems.push({ isActive: false, SlideID: strSlideID, Stain: temp[i].StainLabel, Status: temp[i].Status, Distribution_Location: strSlideDistLoc, Marked_For_Courier_Time: strFormattedDTReadyForCourier, Microtomy_Station: temp[i].LocationPrinted, Microtomy_Time: strFormattedDTSlidePrinted, Stain_Order_Time: strFormattedDTStainOrdered, Slide_Tray: strSlideTray })
-
+              this.arTblItems.push({ isActive: false, SlideID: strSlideID, Stain: temp[i].StainLabel, Status: temp[i].Status, Distribution_Location: strSlideDistLoc, Marked_For_Courier_Time: strFormattedDTReadyForCourier, Microtomy_Station: temp[i].LocationPrinted, Microtomy_Time: strFormattedDTSlidePrinted, Stain_Order_Time: strFormattedDTStainOrdered, Slide_Tray: strSlideTray, Gross_Time: strFormattedDTGross })
+              
               } // end for
+              this.blLoading = false
+              this.blShowTable = true
             }).catch((e) => {
               console.log(e)
             })
@@ -102,18 +125,6 @@ export default {
         strFormattedDateTime = (dtTemp.getMonth() + 1) + '-' + dtTemp.getDate() + '-' + dtTemp.getFullYear() + ' ' + dtTemp.getHours() + ':' + strMinutes
         return strFormattedDateTime
       }
-    
-
-  },
+  }
 }
 </script>
-
-<style scoped>
-#slides {
-  margin: 30px 0;
-}
-
-.loader {
-  text-align: center;
-}
-</style>

@@ -1,6 +1,6 @@
 <template>
   <div class="abouttext">
-      <LookupSlideDetails> </LookupSlideDetails>
+      <CaseInquiryDetails> </CaseInquiryDetails>
       
       <br>
       <div class="abouttextparagraph">
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import LookupSlideDetails from '../components/LookupSlideDetails'
+import CaseInquiryDetails from '../components/CaseInquiryDetails'
 
 export default {
   name: 'CaseInquiry',
   components:
   {
-     LookupSlideDetails
+     CaseInquiryDetails
   },
   data() {
     return {
