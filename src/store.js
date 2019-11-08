@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+var EnvVar = require('./.env.local')
 
 Vue.use(Vuex)
 
@@ -10,16 +11,11 @@ export default new Vuex.Store({
     arTableItems: [],
     arSlideDetailsTableFields: ['Marked_Ready_for_Courier', 'Slide_ID', 'Stain', 'Slide_Tray'],
     arSlideDetailsTableItems: [],
-    //  Prod
-    //  apiURL: 'http://10.24.4.9:2081',
-    //  Test
-    //  apiURL: 'http://10.24.4.9:2082',
-    //  Local Test
-    //  apiURL: 'http://localhost:2081',
-    //  Prod URL
-    apiURL: 'xxxx',
-    apitoken: 'xxxx',
+    apiURL: EnvVar.apiURL,
+    apitoken: EnvVar.apitoken,
     strSlideDistLoc: null
+    // arTableFieldsAllLoc: ['Location', 'Run', 'Cases', 'Blocks', 'Slides'],
+    // arTableItemsAllLoc: []
 
   },
   mutations: {
@@ -40,6 +36,9 @@ export default new Vuex.Store({
     },
     SetStrSlideDistLoc (state, objTmp) {
       state.strSlideDistLoc = objTmp
+    },
+    SetarTableFields (state, objTmp) {
+      state.arTableFields = objTmp
     }
   },
   actions: {
@@ -131,6 +130,46 @@ export default new Vuex.Store({
             reject(error)
           })
       })
+    },
+    LoadAllLocBlockCountTableData ({ commit }, strLocationHash) {
+      return new Promise((resolve, reject) => {
+        let strFullAPICall = this.state.apiURL + '/caseblockslidecount'
+        let arTemp = ['Location', '_1st_Run_Blocks', '_2nd_Run_Blocks', '_3rd_Run_Blocks', '_4th_Run_Blocks', 'Total_Blocks']
+        commit('SetarTableFields', arTemp)
+        // console.log('Hello LoadBlockCountTableData')
+        // console.log(strFullAPICall)
+        // console.log('APIHash')
+        // console.log(strLocationHash)
+        //
+        // Hard Coded master location hash
+        axios.post(strFullAPICall, {
+          URLHASH: '063d01cd',
+          apitoken: this.state.apitoken
+        })
+          .then(function (response) {
+            // Clear table data
+            commit('ClearArTableItems')
+
+            let temp = {}
+            temp = response.data
+
+            // console.log('Load All Loc BLock Count Response')
+            // console.log(temp)
+            for (var i = 1; i < response.data.length; i++) {
+              // Build Chart Data Array
+              commit('PushArTableItems', { isActive: false, Location: temp[i].LocAbbr, _1st_Run_Blocks: temp[i].FirstRunBlockCount, _2nd_Run_Blocks: temp[i].SecondRunBlockCount, _3rd_Run_Blocks: temp[i].ThirdRunBlockCount, _4th_Run_Blocks: temp[i].FourthRunBlockCount, Total_Blocks: temp[i].TotalBlockCount }) } // end for
+            resolve()
+          })
+          .catch(function (error) {
+            console.log(error)
+            reject(error)
+          })
+        console.log('promise done')
+      })
+    },
+    AssignSlideDistrLoc ({ commit }, strLocation) {
+      console.log('Hello AssignSlideDistrLoc')
+      commit('SetStrSlideDistLoc', strLocation)
     }
   },
   getters: {

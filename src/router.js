@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Location from './components/PathConsole.vue'
+import MasterPathConsole from './components/MasterPathConsole.vue'
 
 Vue.use(Router)
 
@@ -21,9 +22,21 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
+      path: '/063d01cd',
+      component: MasterPathConsole,
+      name: 'MasterPathConsole',
+      props: true 
+    },
+    {
       path: '/locn/:locnid',
       component: Location,
       name: 'PathConsole',
+      props: true 
+    },
+    {
+      path: '/CaseInquiry',
+      component: () => import(/* webpackChunkName: "about" */ './views/CaseInquiry.vue'),
+      name: 'CaseInquiry',
       props: true 
     }
       
